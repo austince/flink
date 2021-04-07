@@ -142,6 +142,6 @@ The following configuration parameters need to be set:
 - **Limited integration with Flink's Web UI**: Adaptive Scheduler allows that a job's parallelism can change over its lifetime. The web UI only shows the current parallelism the job.
 - **Limited Job metrics**: With the exception of `numRestarts` all [availability]({{< ref "docs/ops/metrics" >}}#availability) and [checkpointing]({{< ref "docs/ops/metrics" >}}#checkpointing) metrics with the `Job` scope are not working correctly.
 - **Unused slots**: If the max parallelism for slot sharing groups is not equal, slots offered to Adaptive Scheduler might be unused.
-
+- **No support for savepoint-defined default max parallelism**: Adaptive Scheduler does not currently allow savepoints to define the default max parallelism, if a value was not explicitly set.
 
 {{< top >}}
