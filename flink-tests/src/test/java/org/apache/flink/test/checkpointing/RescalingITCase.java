@@ -54,6 +54,7 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.apache.flink.test.util.MiniClusterWithClientResource;
+import org.apache.flink.testutils.junit.FailsWithAdaptiveScheduler;
 import org.apache.flink.util.Collector;
 import org.apache.flink.util.TestLogger;
 
@@ -61,6 +62,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -159,11 +161,13 @@ public class RescalingITCase extends TestLogger {
         testSavepointRescalingKeyedState(true, false);
     }
 
+    @Category(FailsWithAdaptiveScheduler.class) // FLINK-22084
     @Test
     public void testSavepointRescalingInKeyedStateDerivedMaxParallelism() throws Exception {
         testSavepointRescalingKeyedState(false, true);
     }
 
+    @Category(FailsWithAdaptiveScheduler.class) // FLINK-22084
     @Test
     public void testSavepointRescalingOutKeyedStateDerivedMaxParallelism() throws Exception {
         testSavepointRescalingKeyedState(true, true);
